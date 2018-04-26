@@ -6,53 +6,44 @@ namespace FollowingAlongWithUdemyCourse
     {
         static void Main(string[] args)
         {
-            Person personOne = new Person("Mario", "Hoyos", DateTime.Now, "Colombia" );
-            Console.WriteLine(personOne.FirstName);
+            Mercedes mer = new Mercedes();
+            mer.DisplayInfor();
         }
 
     }
 
-    class Person 
+    class Cars 
     {
-        string firstName;
-        string lastName;
-        DateTime birthDate;
-        string country;
+        private decimal price;
+        protected int maxSpeed;
+        public string color;
 
-        public Person(string fName,string lName,DateTime bDay,string country)
-        {
-            this.firstName = fName;
-            this.lastName = lName;
-            this.birthDate = bDay;
-            this.country = country;
-
+        protected decimal Price {
+            get { return price; } set { price = value; }
         }
 
-
-
-
-        public string FirstName
+        public virtual void DisplayInfor()
         {
-            get { return firstName;  }
-            set { firstName = value; }
+            price = 1000;
+            maxSpeed = 300;
+            color = "black";
+
+            Console.WriteLine($"Default price is {price} and the maxspeed is {maxSpeed} and the color is {color}");
         }
+    }
 
-        public string LastName 
+    class Mercedes : Cars 
+    {
+        public override void DisplayInfor()
         {
-            get { return lastName; }
-            set { lastName = value; }
-        }
+            base.DisplayInfor();
 
-        public DateTime BirthDate
-        {
-            get { return birthDate; }
-            set { birthDate = value; }
-        }
+            base.maxSpeed = 1500;
+            base.color = "red";
+            base.Price = 2000;
 
-        public string Country
-        {
-            get { return Country; }
-            set { country = value; }
+            Console.WriteLine($"Default price is {Price} and the maxspeed is {maxSpeed} and the color is {color}");
+
         }
     }
 }
